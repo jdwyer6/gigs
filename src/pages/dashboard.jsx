@@ -1,7 +1,6 @@
-// Dashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query } from 'firebase/firestore';
-import db from "../firebase"; // Make sure this path is correct
+import db from "../firebase";
 import { FaCheck, FaTrash } from 'react-icons/fa';
 
 const Dashboard = () => {
@@ -54,6 +53,9 @@ const Dashboard = () => {
             <div className="btn-complete">
               <FaCheck color="white"/>
             </div>
+            {/* <div className="btn-done">
+              <b>Done</b>
+            </div> */}
             <div className="btn-archive">
               <FaTrash color='white'/>
             </div>
