@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query } from 'firebase/firestore';
 import db from "../firebase"; // Make sure this path is correct
+import { FaCheck, FaTrash } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -31,12 +32,32 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       {requests.map((request, index) => (
-        <div key={index}>
-          <h2>{request.title}</h2>
-          <p>{request.band}</p>
-          <p>{request.name}</p>
-          <p>{request.message}</p>
-          <div><span>Tip: </span><span>{request.tip ? 'Yes' : 'No'}</span></div>
+        <div key={index} className="request-card-container">
+          <div className="song-info-container">
+            <div className="info-item title">
+              <h3>{request.title}</h3>
+            </div>
+            <div className="info-item">
+              <b>Band:</b>
+              <p>{request.band}</p>
+            </div>
+            <div className="info-item">
+              <b>Tip Amount:</b>
+              <p>{request.tip ? request.tipAmount : 'No Tip Submitted :('}</p>
+            </div>
+            <div className="info-item">
+              <b>Message:</b>
+              <p>{request.message}</p>
+            </div>
+          </div>
+          <div className="song-actions-container">
+            <div className="btn-complete">
+              <FaCheck color="white"/>
+            </div>
+            <div className="btn-archive">
+              <FaTrash color='white'/>
+            </div>
+          </div>
         </div>
       ))}
     </div>
