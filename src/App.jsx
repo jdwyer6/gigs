@@ -4,7 +4,7 @@ import Home from './pages/home'
 import Request from './pages/request'
 import Dashboard from './pages/dashboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from './components/navbar'
+import Navigation from './components/navbar'
 import { BrowserRouter } from 'react-router-dom';
 
 import './App.css'
@@ -13,8 +13,9 @@ function App() {
 
   return (
     <>
-      <Nav />
+
       <Router>
+      <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/request" element={<Request />} />
