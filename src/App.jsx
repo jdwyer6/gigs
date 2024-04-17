@@ -5,6 +5,7 @@ import Request from './pages/request'
 import Dashboard from './pages/dashboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './components/navbar'
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.css'
 

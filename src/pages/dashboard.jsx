@@ -28,8 +28,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="mt-5">
+      <h1 className="mb-5">Dashboard</h1>
       {requests.map((request, index) => (
         <div key={index} className="request-card-container">
           <div className="song-info-container">
