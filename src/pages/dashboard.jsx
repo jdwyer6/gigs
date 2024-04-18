@@ -41,6 +41,10 @@ const Dashboard = () => {
               <p>{request.band}</p>
             </div>
             <div className="info-item">
+              <b>Name: </b>
+              <p>{request.name}</p>
+            </div>
+            <div className="info-item">
               <b>Tip Amount:</b>
               <p>{request.tip ? request.tipAmount : 'No Tip Submitted :('}</p>
             </div>
