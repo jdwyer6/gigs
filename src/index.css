@@ -75,6 +75,11 @@ button:focus-visible {
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f9f9f9;
+  }
 }
 
 .song-info-container {
@@ -86,8 +91,18 @@ button:focus-visible {
     }
   }
 
+  .info-item {
+    display: flex;
+    justify-content: start;
+    text-align: start;
+  }
+
   .info-item.title {
     margin-bottom: 10px;
+  }
+
+  .info-item b {
+    margin-right: 5px;
   }
 }
 
@@ -96,7 +111,6 @@ button:focus-visible {
   align-items: center;
 
   .btn-complete {
-    margin-right: 10px;
     background-color: #11B9C3;
     width: 100px;
     height: 100px;
@@ -116,14 +130,15 @@ button:focus-visible {
     }
   }
 
-  .btn-archive {
-    background-color: #AC1D1D;
+  .btn-chart {
+    background-color: #0e4c9e;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
 
     svg {
       width: 40%;
@@ -131,7 +146,7 @@ button:focus-visible {
     }
 
     &:hover {
-      background-color: #791919;
+      background-color: #194379;
       cursor: pointer;
     }
   }
@@ -172,5 +187,54 @@ button:focus-visible {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 12px;
+}
+
+.chart-modal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(37, 37, 37, 0.87);
+  width: 100%;
+  height: 100%;
+  padding-top: 200px;
+
+  .btn-close {
+    color: white;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-page,
+  #root {
+    width: 100%;
+  }
+  .request-card-container {
+    width: 100%;
+    display: block;
+    
+    .song-actions-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .btn-complete,
+    .btn-done,
+    .btn-archive {
+      width: 50px;
+      height: 50px;
+      margin-top: 10px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
 

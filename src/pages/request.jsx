@@ -13,9 +13,11 @@ const Request = () => {
     name: '',
     title: '',
     band: '',
+    chartUrl: '',
     message: '',
     tipAmount: '',
-    tip: false
+    tip: false,
+    complete: false
   });
 
   const handleInputChange = (e) => {
