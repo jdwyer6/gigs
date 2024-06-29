@@ -1,30 +1,27 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/home'
-import Request from './pages/request'
-import Dashboard from './pages/dashboard'
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Request from './pages/request';
+import Login from './pages/login';
+import Admin from './pages/admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './components/navbar'
-import { BrowserRouter } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute'; 
+import { AuthProvider } from './context/AuthContext';
 
-import './App.css'
+import './App.css';
 
 function App() {
-
-  return (
-    <>
-
-      <Router>
-      <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/request" element={<Request />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </Router>
-    </>
-
-  )
+    return (
+        <AuthProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Request />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/admin" element={<PrivateRoute element={Admin} />} />
+                </Routes>
+            </Router>
+        </AuthProvider>
+    );
 }
 
-export default App
+export default App;

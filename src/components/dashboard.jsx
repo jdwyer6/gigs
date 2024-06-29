@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, doc, updateDoc } from 'firebase/firestore';
-import db from "../firebase";
+import { db } from "../firebase";
 import { FaCheck, FaMusic } from 'react-icons/fa';
 
 const Dashboard = () => {
@@ -84,8 +84,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="mt-5 dashboard-page">
-      <h1 className="mb-5">Dashboard</h1>
+    <div className="mt-5 dashboard-page d-flex flex-column align-items-center">
       {requests.map((request, index) => (
         <div key={index} className="request-card-container">
           <div className="song-info-container">

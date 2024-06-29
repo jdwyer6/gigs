@@ -11,6 +11,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #0E4C9E;
+  --color-primary_hover: #194379;
+  --color-dark: #252525;
+  --color-success: #11B9C3;
+  --color-success_hover: #0F9299;
+  --color-danger: #791919;
 }
 
 a {
@@ -24,9 +31,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -70,7 +74,7 @@ button:focus-visible {
 .request-card-container {
   padding: 10px;
   border: 1px solid lightgray;
-  width: 800px;
+  width: 100%;
   margin-bottom: 20px;
   border-radius: 12px;
   display: flex;
@@ -189,15 +193,21 @@ button:focus-visible {
   border-radius: 12px;
 }
 
-.chart-modal {
+.charts-modal {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(37, 37, 37, 0.87);
-  width: 100%;
+  width: 50%;
   height: 100%;
   padding-top: 200px;
+
+  .chart-search {
+    height: 50px;
+    width: 100%;
+    max-width: 800px;
+  }
 
   .btn-close {
     color: white;
@@ -208,6 +218,66 @@ button:focus-visible {
     width: 50px;
     height: 50px;
   }
+
+  .charts-thumbnail-container {
+    .charts-thumbnail {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.admin-tab {  
+  &:first-child {
+    margin-right: 20px;
+  } 
+
+  &.active-tab {
+    border-bottom: 4px solid var(--color-primary);
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-primary)
+  }
+}
+
+.chart-iframe {
+  height: 90vh;
+}
+
+.chart-search {
+  border: 2px solid var(--color-dark);
+  border-radius: 6px;
+
+  &:focus {
+    border: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-primary);
+    border-radius: 6px;
+  }
+
+}
+
+.charts-modal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(37, 37, 37, 0.87);
+  width: 100%;
+  height: 100%;
+  padding: 150px 100px 0;
+
+  .btn-close {
+    color: white;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -235,6 +305,10 @@ button:focus-visible {
         height: 20px;
       }
     }
+  }
+
+  .charts-modal {
+    padding: 100px 20px 0;
   }
 }
 
