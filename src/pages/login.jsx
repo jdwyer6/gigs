@@ -19,17 +19,19 @@ const AuthForm = () => {
     };
 
     return (
-        <div>
+        <div className="sign-in-wrapper">
             <h2>Sign In</h2>
-            <form onSubmit={handleSignIn}>
+            <form onSubmit={handleSignIn} className="sign-in-form-container">
                 <input
                     type="email"
+                    className="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
                 />
                 <input
                     type="password"
+                    className="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
