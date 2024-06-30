@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ChartService from '../services/charts-service';
 
 const Upload = () => {
-    const [file, setFile] = useState(null);
+    const [files, setFiles] = useState([]); 
     const [pdfs, setPdfs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -23,16 +23,20 @@ const Upload = () => {
     }, []);
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        setFiles(e.target.files);
     };
 
     const handleUpload = async () => {
-        if (file) {
+        if (files.length > 0) {
             try {
                 setLoading(true);
-                const uploadedPdf = await ChartService.uploadPdf(file);
-                setPdfs([...pdfs, uploadedPdf]);
-                setFile(null);
+                const uploadedPdfs = [];
+                for (let file of files) {
+                    const uploadedPdf = await ChartService.uploadPdf(file);
+                    uploadedPdfs.push(uploadedPdf);
+                }
+                setPdfs([...pdfs, ...uploadedPdfs]);
+                setFiles([]);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -52,7 +56,7 @@ const Upload = () => {
     return (
         <div>
             <h2 className="my-3">Upload PDF</h2>
-            <input type="file" accept="application/pdf" onChange={handleFileChange} />
+            <input type="file" accept="application/pdf" multiple onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload</button>
         </div>
     );

@@ -8,84 +8,51 @@ const Dashboard = () => {
   const [charts, setCharts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [requestsLoaded, setRequestsLoaded] = useState(false);
-  const [chartsLoaded, setChartsLoaded] = useState(false);
-  const [showChartModal, setShowChartModal] = useState(false);
-  const [chartModalUrl, setChartModalUrl] = useState('');
 
   async function getRequests() {
     const q = query(collection(db, "requests"));
     const querySnapshot = await getDocs(q);
     const items = [];
     querySnapshot.forEach((doc) => {
-      items.push(doc.data());
+      items.push({ id: doc.id, ...doc.data() }); 
     });
     console.log(items)
     setRequests(items);
     setLoading(false);
   }
 
-  async function getCharts() {
-    const q = query(collection(db, "charts"));
-    const querySnapshot = await getDocs(q);
-    const items = [];
-    querySnapshot.forEach((doc) => {
-      items.push(doc.data());
-    });
-    console.log(items)
-    setCharts(items);
-  }
-
-  const handleAddCharts = () => {
-    const updatedRequests = requests.map(request => {
-      const chart = charts.find(c => c.title === request.title);
-      return { ...request, chartUrl: chart ? chart.url : "" };
-    });
-  
-    setRequests(updatedRequests);
-  };
-
-  const handleSetChartModal = (url) => {
-    setChartModalUrl(url);
-    setShowChartModal(true);
-  }
-
-  const handleCompleteRequest = async (request) => {
-    // Assuming each request has a unique ID stored in it, typically from Firestore when fetched
-    const requestRef = doc(db, "requests", request.id);
-  
+  const handleCompleteRequest = async (request, isDone) => {
     try {
-      // Update the 'complete' field of the document in Firestore
-      await updateDoc(requestRef, {
-        complete: true
-      });
+      const requestRef = doc(db, "requests", request.id);
+      await updateDoc(requestRef, { complete: isDone });
   
-      setRequests(prevRequests => prevRequests.map(r => 
-        r.id === request.id ? { ...r, complete: true } : r
-      ));
+      setRequests(prevRequests =>
+        prevRequests.map(req =>
+          req.id === request.id ? { ...req, complete: isDone } : req
+        )
+      );
     } catch (error) {
-      console.error("Error updating request:", error);
+      console.error("Error updating document: ", error);
     }
   };
-
 
   useEffect(() => {
     getRequests().then(() => setRequestsLoaded(true));
-    getCharts().then(() => setChartsLoaded(true));
   }, []);
-
-  useEffect(() => {
-    if (requestsLoaded && chartsLoaded) {
-      handleAddCharts();
-    }
-  }, [requestsLoaded, chartsLoaded]);
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
   return (
-    <div className="mt-5 dashboard-page d-flex flex-column align-items-center">
-      {requests.map((request, index) => (
+    <div className="mt-5 dashboard-page request-card-wrapper">
+      {requests
+      .sort((a, b) => {
+        // Move incomplete requests to the front
+        if (a.complete === b.complete) return 0; // Keep original order if both have the same completion status
+        return a.complete ? 1 : -1; // Incomplete requests come first
+      })
+      .map((request, index) => (
         <div key={index} className="request-card-container">
           <div className="song-info-container">
             <div className="info-item title">
@@ -109,32 +76,16 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="song-actions-container">
-          {request.chartUrl != '' ? (
-            <div className="info-item">
-              <div className="btn-chart" onClick={() => handleSetChartModal(request.chartUrl)}>
-                <FaMusic color='white'/>
-              </div>
-            </div>
-            ) : null}
-
             {request.complete ? (
-            <div className="info-item">
-              <div className="btn-done">
-                <b>Done</b>
-              </div>
-            </div>
+              <div className="btn-done" onClick={() => handleCompleteRequest(request, false)}>Undo</div>
             ) : 
-            <div className="btn-complete" onClick={()=> handleCompleteRequest(request)}>
-              <FaCheck color="white"/>
+            <div className="btn-complete" onClick={() => handleCompleteRequest(request, true)}>
+              Mark as Complete
             </div>
             }
           </div>
         </div>
       ))}
-      <div className={`chart-modal ${showChartModal ? 'd-block' : 'd-none'}`}>
-        <button className="btn-close" onClick={() => setShowChartModal(false)}></button>
-        <img src={chartModalUrl} alt="chart" />
-      </div>
     </div>
     
   );

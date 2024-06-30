@@ -18,6 +18,9 @@
   --color-success: #11B9C3;
   --color-success_hover: #0F9299;
   --color-danger: #791919;
+  --color-danger_hover: #5C0D0D;
+  --color-light: #f9f9f9;
+  --color-neutral: #f2f2f2;
 }
 
 a {
@@ -50,6 +53,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
@@ -71,14 +75,38 @@ button:focus-visible {
   }
 }
 
+.request-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: bold;
+  height: 50px;
+
+  &:hover {
+    background-color: var(--color-primary_hover);
+  }
+
+}
+
 .request-card-container {
+  margin-right: 20px;
+  margin-bottom: 20px;
   padding: 10px;
   border: 1px solid lightgray;
   width: 100%;
-  margin-bottom: 20px;
+  max-width: 300px;
   border-radius: 12px;
-  display: flex;
   justify-content: space-between;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     cursor: pointer;
@@ -87,6 +115,8 @@ button:focus-visible {
 }
 
 .song-info-container {
+  margin-bottom: 1.5rem;
+
   .info-item {
     display: flex;
     justify-content: space-between;
@@ -114,14 +144,19 @@ button:focus-visible {
   display: flex;
   align-items: center;
 
+  /* border-top: 1px solid var(--color-dark);
+  border-bottom: 1px solid var(--color-dark); */
+
   .btn-complete {
-    background-color: #11B9C3;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    background-color: var(--color-success);
+    width: 100%;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
 
     svg {
       width: 60%;
@@ -129,7 +164,7 @@ button:focus-visible {
     }
 
     &:hover {
-      background-color: #0f9299;
+      background-color: var(--color-success_hover);
       cursor: pointer;
     }
   }
@@ -156,14 +191,16 @@ button:focus-visible {
   }
 
   .btn-done {
-    background-color: rgb(37, 37, 37);
-    width: 100px;
-    color: white;
-    height: 100px;
-    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--color-dark);
+    width: 100%;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 12px;
+    color: var(--color-dark);
+    font-weight: bold;
 
     svg {
       width: 40%;
@@ -171,19 +208,18 @@ button:focus-visible {
     }
 
     &:hover {
-      background-color: #791919;
+      background-color: var(--color-neutral);
       cursor: pointer;
     }
   }
 }
 
 .form-submit-success-modal {
-  background-color: #11B9C3;
+  background-color: var(--color-primary);
   position: absolute;
   color: white;
   top: 10%;
   padding: 40px;
-  height: 60vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -191,6 +227,10 @@ button:focus-visible {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 12px;
+
+  button {
+    width: 100%;
+  }
 }
 
 .charts-modal {
@@ -330,6 +370,10 @@ button:focus-visible {
 
   .charts-modal {
     padding: 100px 20px 0;
+  }
+
+  .request-card-wrapper {
+    justify-content: center;
   }
 }
 

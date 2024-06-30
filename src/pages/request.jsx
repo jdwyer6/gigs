@@ -32,12 +32,15 @@ const Request = () => {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(db, 'requests'), requestData);
-      console.log("Document written with ID: ", docRef.id);
       document.getElementById('form-submit-success-modal').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('form-submit-success-modal').style.display = 'none';
-        navigate('/');  // Redirect after the timeout
-      }, 3000); 
+      setRequestData({
+        title: '',
+        band: '',
+        name: '',
+        tipAmount: '',
+        message: '',
+        complete: false,
+      });
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Error submitting request. Please try again. --- " + error)
@@ -51,6 +54,7 @@ const Request = () => {
       </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="name">
+          <Form.Label className="w-100 text-start fw-bold">Your Name (Optional)</Form.Label>
           <Form.Control
             type="name"
             placeholder="Your name (optional)"
@@ -59,6 +63,7 @@ const Request = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="title">
+        <Form.Label className="w-100 text-start fw-bold">Song Title</Form.Label>
           <Form.Control
             type="text"
             placeholder="Title"
@@ -67,6 +72,7 @@ const Request = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="band">
+        <Form.Label className="w-100 text-start fw-bold">Band</Form.Label>
           <Form.Control
             type="text"
             placeholder="Band"
@@ -75,6 +81,7 @@ const Request = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="message">
+        <Form.Label className="w-100 text-start fw-bold">Message (optional)</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -102,19 +109,14 @@ const Request = () => {
         </Form.Group>
         </div>
         <div className="d-grid gap-2">
-          <Button variant="primary" type="submit">
+          <Button className="btn-primary" type="submit">
             Submit
           </Button>
         </div>
       </Form>
       <div className="form-submit-success-modal" id="form-submit-success-modal" style={{display:'none'}}>
-        <h1>Song Request Submitted Successfully. Thanks!</h1>
-        <h3>You will now be redirected to the home page.</h3>
-        <div>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-        </div>
+        <h3 className="mb-5">The band has received your song request. Thanks!</h3>
+        <button onClick={() => document.getElementById('form-submit-success-modal').style.display = 'none'}>Ok</button>
       </div>
     </div>
   );
