@@ -1,7 +1,7 @@
 // src/components/PdfList.jsx
 import React, { useEffect, useState } from 'react';
 import ChartService from '../services/charts-service';
-import PdfPreview from './PDFPreview';
+import { FaSearch } from 'react-icons/fa';
 
 const PdfList = () => {
     const [pdfs, setPdfs] = useState([]);
@@ -10,6 +10,17 @@ const PdfList = () => {
     const [currentPDF, setCurrentPDF] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false); 
+
+    useEffect(() => {
+        const storedCurrentPDF = localStorage.getItem('currentPDF');
+        if (storedCurrentPDF) {
+            setCurrentPDF(JSON.parse(storedCurrentPDF));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('currentPDF', JSON.stringify(currentPDF));
+    }, [currentPDF]);
 
     useEffect(() => {
         const fetchPdfs = async () => {
@@ -45,8 +56,10 @@ const PdfList = () => {
         <div>
             <div>
                 <div>
-                    <button className="w-100 my-3" onClick={openModal}>Search</button>
-                    <h3>{pdfs[currentPDF].name}</h3>
+                    <div className="charts-title-container">
+                        <button className="chart-search-button" onClick={openModal}><FaSearch color='white'/></button>
+                        <h3>{pdfs[currentPDF].name.replace(/\.pdf$/i, "")}</h3>
+                    </div>
                     <iframe
                         className='chart-iframe'
                         src={pdfs[currentPDF].url}
@@ -70,7 +83,7 @@ const PdfList = () => {
                         <div className="charts-thumbnail-container">
                             {filteredPdfs.map((pdf, index) => (
                                 <button className="charts-thumbnail" key={pdf.name} onClick={() => setCurrentPDF(index)}>
-                                    {pdf.name}
+                                    {pdf.name.replace(/\.pdf$/i, "")}
                                 </button>
                             ))}
                         </div>
