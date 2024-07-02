@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, doc, updateDoc } from 'firebase/firestore';
 import { db } from "../firebase";
-import { FaCheck, FaMusic } from 'react-icons/fa';
+import { FaCheck, FaMusic, FaList } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -35,6 +35,16 @@ const Dashboard = () => {
       console.error("Error updating document: ", error);
     }
   };
+
+  const getMusicSearchQuery = (title, band) => {
+    const searchQuery = encodeURIComponent(`${title} ${band}`);
+    window.open(`https://www.sheetmusicdirect.com/en-US/Search.aspx?query=${searchQuery}`);
+  }
+
+  const getLyricsSearchQuery = (title, band) => {
+    const searchQuery = encodeURIComponent(`${title} ${band} lyrics`);
+    window.open(`https://www.google.com/search?q=${searchQuery}`);
+  }
 
   useEffect(() => {
     getRequests().then(() => setRequestsLoaded(true));
@@ -76,10 +86,16 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="song-actions-container">
+            <div className="btn-song-actions btn-chart" onClick={()=>getMusicSearchQuery(request.title, request.band)}>
+              <FaMusic /> Music
+            </div>
+            <div className="btn-song-actions btn-lyrics" onClick={()=>getLyricsSearchQuery(request.title, request.band)}>
+              <FaList /> Lyrics
+            </div>
             {request.complete ? (
-              <div className="btn-done" onClick={() => handleCompleteRequest(request, false)}>Undo</div>
+              <div className="btn-song-actions btn-done" onClick={() => handleCompleteRequest(request, false)}>Undo</div>
             ) : 
-            <div className="btn-complete" onClick={() => handleCompleteRequest(request, true)}>
+            <div className="btn-song-actions btn-complete" onClick={() => handleCompleteRequest(request, true)}>
               Mark as Complete
             </div>
             }
