@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, doc, updateDoc } from 'firebase/firestore';
 import { db } from "../firebase";
-import { FaCheck, FaMusic, FaList } from 'react-icons/fa';
+import { FaCheck, FaMusic, FaList, FaDollarSign } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -66,7 +66,7 @@ const Dashboard = () => {
         <div key={index} className="request-card-container">
           <div className="song-info-container">
             <div className="info-item title">
-              <h3>{request.title}</h3>
+            <div className="dollar-sign">{request.tip ? <FaDollarSign/> : ''}</div><h3>{request.title}</h3>
             </div>
             <div className="info-item band">
               <b>Band: </b>

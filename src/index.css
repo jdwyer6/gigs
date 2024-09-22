@@ -21,6 +21,7 @@
   --color-danger_hover: #5C0D0D;
   --color-light: #f9f9f9;
   --color-neutral: #f2f2f2;
+  --color-green: #2ECC71;
 }
 
 a {
@@ -123,6 +124,19 @@ button:focus-visible {
 .song-info-container {
   margin-bottom: 1.5rem;
 
+  .dollar-sign {
+    svg {
+      width: 24px;
+      height: 24px;
+      color: white;
+
+      background-color: var(--color-green);
+      border-radius: 50%;
+      padding: 3px;
+      margin-right: 4px;
+    }
+  }
+
   .info-item {
     display: flex;
     justify-content: space-between;
@@ -139,6 +153,11 @@ button:focus-visible {
 
   .info-item.title {
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    h3 {
+      margin-bottom: 0;
+    }
   }
 
   .info-item b {
