@@ -55,7 +55,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="mt-5 dashboard-page request-card-wrapper">
+    <div className="dashboard-page request-card-wrapper">
       {requests
       .sort((a, b) => {
         // Move incomplete requests to the front
@@ -68,19 +68,19 @@ const Dashboard = () => {
             <div className="info-item title">
               <h3>{request.title}</h3>
             </div>
-            <div className="info-item">
+            <div className="info-item band">
               <b>Band: </b>
               <p>{request.band}</p>
             </div>
-            <div className="info-item">
+            <div className="info-item name">
               <b>Name: </b>
               <p>{request.name}</p>
             </div>
-            <div className="info-item">
+            <div className="info-item tip">
               <b>Tip Amount: </b>
               <p>{request.tip ? request.tipAmount : 'No Tip Submitted :('}</p>
             </div>
-            <div className="info-item">
+            <div className="info-item message">
               <b>Message:</b>
               <p>{request.message}</p>
             </div>
@@ -93,7 +93,7 @@ const Dashboard = () => {
               <FaList /> Lyrics
             </div>
             {request.complete ? (
-              <div className="btn-song-actions btn-done" onClick={() => handleCompleteRequest(request, false)}>Undo</div>
+              <div className="btn-song-actions btn-done" onClick={() => handleCompleteRequest(request, false)}>Undo Mark Complete</div>
             ) : 
             <div className="btn-song-actions btn-complete" onClick={() => handleCompleteRequest(request, true)}>
               Mark as Complete

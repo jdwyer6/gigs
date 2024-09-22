@@ -79,6 +79,7 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
+  margin-top: 20px;
 }
 
 .btn-primary {
@@ -89,10 +90,15 @@ button:focus-visible {
   padding: 10px 20px;
   font-weight: bold;
   height: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 
   &:hover {
     background-color: var(--color-primary_hover);
+    color: white;
   }
+
 
 }
 
@@ -370,31 +376,139 @@ button:focus-visible {
 
 }
 
+/* UTILITIES */
+.mr-small { 
+    margin-right: 5px;
+}
+
+.ml-small {
+    margin-left: 5px;
+}
+
+.mt-small {
+    margin-top: 5px;
+}
+
+.mb-small {
+    margin-bottom: 5px;
+}
+
+.mr-medium {
+    margin-right: 10px;
+}
+
+.ml-medium {
+    margin-left: 10px;
+}
+
+.mt-medium {
+    margin-top: 10px;
+}
+
+.mb-medium {
+    margin-bottom: 10px;
+}
+
+.mr-large {
+    margin-right: 20px;
+}
+
+.ml-large {
+    margin-left: 20px;
+}
+
+.mt-large {
+    margin-top: 20px;
+}
+
+.mb-large {
+    margin-bottom: 20px;
+}
+
+.hover {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.w-md {
+  width: 400px;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
 @media (max-width: 768px) {
   .dashboard-page,
   #root {
     width: 100%;
+    padding: 10px;
   }
   .request-card-container {
     width: 100%;
     display: block;
+    margin-top: 0;
+    max-width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
     
     .song-actions-container {
       display: flex;
       justify-content: space-around;
     }
 
+    .song-info-container {
+      margin-bottom: 10px;
+
+      .title {
+        margin-bottom: 0;
+
+        h3 {
+          font-size: 16px;
+          font-weight: bold;
+        }  
+      }
+
+      .band,
+      .name,
+      .tip,
+      .message {
+        font-size: 14px;
+        
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     .btn-complete,
     .btn-done,
     .btn-song-actions,
     .btn-archive {
-      width: 50px;
-      height: 50px;
-      margin-top: 10px;
+      width: 100%;
+      height: auto;
+      padding: 5px;
+      margin-top: 0;
+      font-size: 14px;
+      margin-bottom: 10px;
+
       svg {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
       }
+    }
+
+    .btn-complete {
+      margin-bottom: 0;
     }
   }
 
@@ -404,6 +518,8 @@ button:focus-visible {
 
   .request-card-wrapper {
     justify-content: center;
+    padding: 0;
+    width: 100%;
   }
 }
 

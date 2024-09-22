@@ -5,9 +5,13 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db } from "../firebase"; 
 import { useNavigate } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 const Request = () => {
+  const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_PUBLISHABLE_KEY);
+
+
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
     name: '',
@@ -30,22 +34,49 @@ const Request = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
+      // First, send the request data to the Firestore database
       const docRef = await addDoc(collection(db, 'requests'), requestData);
-      document.getElementById('form-submit-success-modal').style.display = 'block';
-      setRequestData({
-        title: '',
-        band: '',
-        name: '',
-        tipAmount: '',
-        message: '',
-        complete: false,
-      });
+      
+      // If the document was added successfully, proceed to Stripe checkout
+      handleCheckout(requestData.tipAmount)
+        .then(() => {
+          document.getElementById('form-submit-success-modal').style.display = 'block';
+          setRequestData({
+            title: '',
+            band: '',
+            name: '',
+            tipAmount: '',
+            message: '',
+            complete: false,
+          });
+        })
+        .catch((error) => {
+          console.error("Error during checkout: ", error);
+          alert("Error during checkout. Please try again. --- " + error);
+        });
     } catch (error) {
       console.error("Error adding document: ", error);
-      alert("Error submitting request. Please try again. --- " + error)
+      alert("Error submitting request. Please try again. --- " + error);
     }
   };
+
+  
+  const handleCheckout = async (amount) => {
+    const stripe = await stripePromise;
+    const response = await fetch('http://localhost:4242/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ amount: parseFloat(amount) }),
+    });
+
+    const { url } = await response.json();
+    window.location.href = url;
+  };
+    
 
   return (
     <div>
@@ -97,8 +128,10 @@ const Request = () => {
               label="I want to tip the band."
               checked={requestData.tip}
               onChange={handleInputChange}
+              className="hover"
             />
           </Form.Group>
+          {requestData.tip && (
           <Form.Group className="mb-3 ms-3" controlId="tipAmount">
           <Form.Control
             type="text"
@@ -107,6 +140,7 @@ const Request = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
+          )}
         </div>
         <div className="d-grid gap-2">
           <Button className="btn-primary" type="submit">
@@ -114,10 +148,6 @@ const Request = () => {
           </Button>
         </div>
       </Form>
-      <div className="form-submit-success-modal" id="form-submit-success-modal" style={{display:'none'}}>
-        <h3 className="mb-5">The band has received your song request. Thanks!</h3>
-        <button onClick={() => document.getElementById('form-submit-success-modal').style.display = 'none'}>Ok</button>
-      </div>
     </div>
   );
 };
