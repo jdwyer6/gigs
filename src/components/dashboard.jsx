@@ -16,7 +16,6 @@ const Dashboard = () => {
     querySnapshot.forEach((doc) => {
       items.push({ id: doc.id, ...doc.data() }); 
     });
-    console.log(items)
     setRequests(items);
     setLoading(false);
   }
