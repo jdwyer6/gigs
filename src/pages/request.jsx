@@ -9,7 +9,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 
 const Request = () => {
-  const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_PUBLISHABLE_KEY);
+  const stripePromise = loadStripe(`${import.meta.env.VITE_REACT_STRIPE_PUBLISHABLE_KEY}`);
 
 
   const navigate = useNavigate();
