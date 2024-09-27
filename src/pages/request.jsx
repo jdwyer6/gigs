@@ -65,7 +65,7 @@ const Request = () => {
   
   const handleCheckout = async (amount) => {
     const stripe = await stripePromise;
-    const response = await fetch('http://localhost:4242/create-checkout-session', {
+    const response = await fetch(import.meta.env.VITE_REACT_PROD_SERVER_URL + '/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
