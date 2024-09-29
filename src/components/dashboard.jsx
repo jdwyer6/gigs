@@ -74,23 +74,18 @@ const Dashboard = () => {
   return (
 	<div className="mx-auto bg-white pt-3 md:pt-8 md:p-8 md:shadow-lg md:rounded-lg min-h-screen">
 		{/* Header */}
-		<div className="flex flex-col md:flex-row items-center justify-between bg-gray-100 p-3 shadow-md rounded-lg mb-3">
-			<button className="bg-red-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-700 transition">
+		<div className="flex md:flex-row items-center justify-between bg-gray-100 p-3 shadow-md rounded-lg mb-3">
+			<button className="flex items-center p-2 text-sm font-medium text-gray-600 w-auto transition-colors duration-200 sm:text-base dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray bg-white  justify-center border rounded">
 				Archive All Requests
 			</button>
 			<div className="flex items-center space-x-4">
 				<div>
-					<label htmlFor="sortTime" className="text-gray-700 font-medium mr-2">Time:</label>
-					<select id="sortTime" className="bg-white border border-gray-300 rounded-md py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500">
-						<option value="first-to-last">First to Last</option>
-						<option value="last-to-first">Last to First</option>
-					</select>
-					</div>
-					<div>
-					<label htmlFor="sortAmount" className="text-gray-700 font-medium mr-2">Amount Tipped:</label>
-					<select id="sortAmount" className="bg-white border border-gray-300 rounded-md py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500">
-						<option value="low-to-high">Low to High</option>
-						<option value="high-to-low">High to Low</option>
+					<label htmlFor="sortTime" className="text-gray-700 font-medium mr-2">Sort</label>
+					<select id="sortTime" className="bg-white border border-gray-300 rounded-md py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+						<option value="first-to-last text-sm">Tip (Most)</option>
+						<option value="last-to-first text-sm">Tip (Least)</option>
+						<option value="last-to-first text-sm">Time (Newest)</option>
+						<option value="last-to-first text-sm">Time (Oldest)</option>
 					</select>
 				</div>
 			</div>

@@ -91,16 +91,16 @@ const Request = () => {
   return (
     <div>
 		<div className="mb-4">
-			<div className="w-full flex items-center mb-4">
+			<a href="/" className="w-full flex items-center mb-4">
 				<img className="w-8 md:w-16 h-8 md:h-16 mr-2" src={logo} alt="logo" />
 				<h1 className="text-lg md:text-3xl font-regular">MelodyCue</h1>
-			</div>
+			</a>
 			
 			<h1 className="text-xl md:text-2xl font-bold">Request a Song</h1>
 						
 			<div className="flex flex-col">
 				<h1 className="text-base md:text-lg text-gray-800">The Midnight Jellyfish Parade</h1>
-				<a href="/" className="text-blue-500 hover:underline">@bandNameMusic</a>
+				<a href="/" className="text-blue-500 hover:underline">@midnightJellyFishParadeMusic</a>
 			</div>
 		</div>
 		<Form onSubmit={handleSubmit}>
@@ -165,17 +165,13 @@ const Request = () => {
 			)}
 			</div>
 			<div className="d-grid gap-2">
-			<button type="submit" className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandPrimary rounded-lg hover:bg-brandPrimary-dark focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-    Submit
-</button>
+				<button type="submit" className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandPrimary rounded-lg hover:bg-brandPrimary-dark focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">Submit</button>
 			</div>
 		</Form>
 
-		<div className="fixed bottom-0 left-0 w-full bg-brandSecondary text-white text-center py-4 px-6 shadow-lg">
-			<p className="text-lg font-semibold">
-				Got a band? Sign up for MelodyCue<span className="italic">...it's free!</span>
-			</p>
-			<a href="/signup" className="mt-2 inline-block bg-white text-brandSecondary font-bold py-2 px-4 rounded-full hover:bg-indigo-100 transition">Sign Up Now</a>
+		<div className="mt-3 w-full text-center min-h-max">
+			<p className="text-sm font-semibold">Got a band? Sign up for MelodyCue<span className="italic">...it's free!</span></p>
+			<a href="/landing" className="inline-block bg-white text-brandSecondary font-bold px-4 rounded-full hover:bg-indigo-100 transition">Sign Up Now</a>
 		</div>
 
     </div>
