@@ -6,6 +6,7 @@ import Login from './pages/login';
 import Admin from './pages/admin';
 import Success from './pages/success';
 import Cancel from './pages/cancel';
+import Landing from './pages/landing';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from './components/PrivateRoute'; 
 import { AuthProvider } from './context/AuthContext';
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/admin" element={<PrivateRoute element={Admin} />} />
                     <Route path="/success" element={<Success />} />
                     <Route path="/cancel" element={<Cancel />} />
+                    <Route path="/landing" element={<Landing />} />
                 </Routes>
             </Router>
         </AuthProvider>

@@ -1,7 +1,7 @@
 import Dashboard from "../components/dashboard";
 import AdminTabs from "../components/AdminTabs";
-import Charts from "../components/Charts";
-import Upload from "../components/Upload";
+import Account from "../components/Account";
+import Data from "../components/Data";
 
 import { useState } from 'react'
 
@@ -12,9 +12,9 @@ const Admin = () => {
             case 0:
                 return <Dashboard />;
             case 1:
-                return <Charts />;
+                return <Account />;
             case 2:
-                return <Upload />;
+                return <Data />;
             default:
                 return <Dashboard />;
         }
