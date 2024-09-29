@@ -51,8 +51,8 @@ const Account = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto bg-white md:p-8 md:shadow-lg md:rounded-lg">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-8">Account Settings</h1>
+      <div className="mx-auto bg-white md:shadow-lg md:rounded-lg">
+        <h1 className="text-3xl font-semibold text-gray-800 my-8">Account Settings</h1>
 
         {/* Band Information */}
         <section className="mb-8">
