@@ -595,6 +595,11 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
 .-mb-px {
   margin-bottom: -1px;
 }
@@ -730,6 +735,14 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-32 {
+  min-height: 8rem;
+}
+
+.min-h-24 {
+  min-height: 6rem;
 }
 
 .w-10 {
@@ -1092,6 +1105,11 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .pb-8 {

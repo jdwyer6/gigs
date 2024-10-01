@@ -60,12 +60,12 @@ const Account = () => {
           <form onSubmit={handleSubmit}>
             {/* Band Name */}
             <div className="mb-6">
-              <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Band Name</label>
+              <label className="text-start block text-sm text-gray-500">Band Name</label>
               <input
                 type="text"
                 value={bandName}
                 onChange={(e) => setBandName(e.target.value)}
-                className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                className="block  mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="Enter your band name"
                 required
               />
@@ -73,12 +73,12 @@ const Account = () => {
 
             {/* Band Social Media */}
             <div className="mb-6">
-              <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Band Social Media</label>
+              <label className="text-start block text-sm text-gray-500">Band Social Media</label>
               <input
                 type="text"
                 value={bandSocialMedia}
                 onChange={(e) => setBandSocialMedia(e.target.value)}
-                className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                className="block  mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="Social Media URL"
                 required
               />
@@ -86,23 +86,23 @@ const Account = () => {
 
             {/* Band Website */}
             <div className="mb-6">
-              <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Band Website</label>
+              <label className="text-start block text-sm text-gray-500">Band Website</label>
               <input
                 type="url"
                 value={bandWebsite}
                 onChange={(e) => setBandWebsite(e.target.value)}
-                className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                className="block  mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="https://yourbandwebsite.com"
               />
             </div>
 
             {/* Band Photo */}
             <div className="mb-6">
-              <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Band Photo</label>
+              <label className="text-start block text-sm text-gray-500">Band Photo</label>
               <input
                 type="file"
                 onChange={(e) => setBandPhoto(e.target.files[0])}
-                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
+                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
               />
               {photoURL && (
                 <img src={photoURL} alt="Band Photo" className="mt-4 w-32 h-32 object-cover rounded-lg" />
@@ -129,20 +129,20 @@ const Account = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Current Password */}
                 <div>
-                    <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Current Password</label>
+                    <label className="text-start block text-sm text-gray-500">Current Password</label>
                     <input
                     type="password"
-                    className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    className="block  mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     placeholder="Enter current password"
                     required
                     />
                 </div>
                 {/* New Password */}
                 <div>
-                    <label className="text-start block text-sm text-gray-500 dark:text-gray-300">New Password</label>
+                    <label className="text-start block text-sm text-gray-500">New Password</label>
                     <input
                     type="password"
-                    className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    className="block  mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     placeholder="Enter new password"
                     required
                     />
@@ -150,10 +150,10 @@ const Account = () => {
                 </div>
                 {/* Confirm New Password */}
                 <div className="mt-6 text-start">
-                <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Confirm New Password</label>
+                <label className="text-start block text-sm text-gray-500">Confirm New Password</label>
                 <input
                     type="password"
-                    className="block mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    className="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     placeholder="Confirm new password"
                     required
                 />
@@ -226,20 +226,20 @@ const Account = () => {
             <form>
                 {/* Payment Method */}
                 <div className="mb-6">
-                <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Credit Card Number</label>
+                <label className="text-start block text-sm text-gray-500">Credit Card Number</label>
                 <input
                     type="text"
-                    className="block mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    className="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     placeholder="Enter your credit card number"
                     required
                 />
                 </div>
                 {/* Billing Address */}
                 <div className="mb-6">
-                <label className="text-start block text-sm text-gray-500 dark:text-gray-300">Billing Address</label>
+                <label className="text-start block text-sm text-gray-500">Billing Address</label>
                 <input
                     type="text"
-                    className="block mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    className="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     placeholder="Enter your billing address"
                     required
                 />

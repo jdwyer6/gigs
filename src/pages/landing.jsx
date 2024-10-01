@@ -11,8 +11,8 @@ const Landing = () => {
         <div className="bg-gray-50">
           {/* Navbar */}
           <header className="bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              	<div className="flex justify-between items-center py-6">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+              	<div className="flex justify-between items-center py-2">
 			  	<a href="/" className="flex items-center mb-4">
 					<img className="w-8 md:w-16 h-8 md:h-16 mr-2" src={logo} alt="logo" />
 					<h1 className="text-lg md:text-3xl font-regular">MelodyCue</h1>
@@ -37,8 +37,8 @@ const Landing = () => {
           </header>
     
 			{/* Hero Section */}
-			<section className="relative bg-white pb-8 md:py-16">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+			<section className="relative bg-white py-16">
+				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8 text-center">
 					<h1 className="text-3xl md:text-5xl font-bold text-gray-900">Automate your Requests, Amplify your Reach.</h1>
 					<p className="mt-4 text-lg text-gray-500">
 						MelodyCue makes managing tips and song requests easy for live bands, offering insights and tools to grow your audience.
@@ -46,7 +46,7 @@ const Landing = () => {
 					<div className="mt-8">
 						<a
 						href="#"
-						className="bg-brandPrimary text-white px-8 py-3 rounded-md shadow hover:bg-brandPrimary-dark"
+						className="bg-brandPrimary text-white px-8 py-3 rounded-md shadow hover:bg-brandPrimary-dark inline-block"
 						>
 						Get Started
 						</a>
@@ -62,7 +62,7 @@ const Landing = () => {
     
           {/* Features Section */}
           <section className="py-4 md:py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
               <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900">
                 Features
               </h2>
@@ -137,7 +137,7 @@ const Landing = () => {
     
           {/* Footer */}
           <footer className="bg-white py-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 text-center">
               <p className="text-gray-500">© 2024 MelodyCue. All rights reserved.</p>
             </div>
           </footer>
