@@ -2,6 +2,7 @@ import Dashboard from "../components/dashboard";
 import AdminTabs from "../components/AdminTabs";
 import Account from "../components/Account";
 import Data from "../components/Data";
+import Archive from "../components/Archive";
 
 import { useState } from 'react'
 
@@ -15,6 +16,8 @@ const Admin = () => {
                 return <Account />;
             case 2:
                 return <Data />;
+            case 3:
+                return <Archive />;
             default:
                 return <Dashboard />;
         }

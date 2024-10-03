@@ -1,3 +1,7 @@
+import { FaArchive, FaDatabase } from "react-icons/fa";
+import { IoExitOutline } from "react-icons/io5";
+import { MdOutlineManageAccounts } from "react-icons/md";
+
 const AdminTabs = ({ activeTab, setActiveTab }) => {
 
     return (
@@ -14,9 +18,8 @@ const AdminTabs = ({ activeTab, setActiveTab }) => {
                 </button>
 
                 <button onClick={()=>setActiveTab(1)} className={`inline-flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 ${activeTab === 1 ? 'border-brandPrimary border-b-2' : 'border-transparent'}  sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mx-1 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
+                <MdOutlineManageAccounts />
+
 
                     <span className="mx-1 text-sm sm:text-base">
                         Account
@@ -24,20 +27,25 @@ const AdminTabs = ({ activeTab, setActiveTab }) => {
                 </button>
 
                 <button onClick={()=>setActiveTab(2)} className={`inline-flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 ${activeTab === 2 ? 'border-brandPrimary border-b-2' : 'border-transparent'}  sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mx-1 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3v18h18V3H3zm3 3h12v12H6V6zm3 3h6v6H9V9z" />
-                    </svg>
+                <FaDatabase /> 
 
                     <span className="mx-1 text-sm sm:text-base">
                         Data
                     </span>
                 </button>
+
+                <button onClick={()=>setActiveTab(3)} className={`inline-flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 ${activeTab === 3 ? 'border-brandPrimary border-b-2' : 'border-transparent'}  sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400`}>
+                <FaArchive />
+
+
+                    <span className="mx-1 text-sm sm:text-base">
+                        Archive
+                    </span>
+                </button>
+
                 <div className="ml-auto">
                     <button onClick={()=>setActiveTab(2)} className="inline-flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mx-1 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 11-6 0v-1m6-10V5a3 3 0 10-6 0v1" />
-                        </svg>
-
+                        <IoExitOutline />
                         <span className="mx-1 text-sm sm:text-base">
                             Log Out
                         </span>

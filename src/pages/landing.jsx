@@ -13,9 +13,9 @@ const Landing = () => {
           <header className="bg-white">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
               	<div className="flex justify-between items-center py-2">
-			  	<a href="/" className="flex items-center mb-4">
-					<img className="w-8 md:w-16 h-8 md:h-16 mr-2" src={logo} alt="logo" />
-					<h1 className="text-lg md:text-3xl font-regular">MelodyCue</h1>
+			  	<a href="/" className="flex flex-col md:flex-row items-center mb-4">
+					<img className="w-64 md:w-16 h-64 md:h-16 mr-2" src={logo} alt="logo" />
+					<h1 className="text-4xl md:text-3xl font-regular">MelodyCue</h1>
 				</a>
                 <div className="hidden md:flex items-center space-x-8">
                   <a href="#" className="text-gray-500 hover:text-brandPrimary-dark">

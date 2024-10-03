@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, query, doc, updateDoc, deleteDoc, where, writeBatch } from 'firebase/firestore';
 import { db } from "../firebase";
-import { FaCheck, FaDollarSign, FaUndo } from 'react-icons/fa';
+import { FaCheck, FaDollarSign, FaUndo, FaArchive } from 'react-icons/fa';
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 
@@ -18,7 +18,9 @@ const Dashboard = () => {
 		const querySnapshot = await getDocs(q);
 		const items = [];
 		querySnapshot.forEach((doc) => {
-		items.push({ id: doc.id, ...doc.data() }); 
+			if (!doc.data().archived) {
+				items.push({ id: doc.id, ...doc.data() }); 
+			}
 		});
 		setRequests(items);
 		setLoading(false);
@@ -41,15 +43,26 @@ const Dashboard = () => {
 
 	const handleDeleteRequest = async () => {
 		try {
-		const requestRef = doc(db, "requests", requestToDelete.id);
-		await deleteDoc(requestRef);
-	
-		// Update the state to remove the deleted request
-		setRequests(prevRequests => prevRequests.filter(req => req.id !== requestToDelete.id));
-		setShowDeleteModal(false);
-		setRequestToDelete(null);
+			const requestRef = doc(db, "requests", requestToDelete.id);
+			await deleteDoc(requestRef);
+		
+			// Update the state to remove the deleted request
+			setRequests(prevRequests => prevRequests.filter(req => req.id !== requestToDelete.id));
+			setShowDeleteModal(false);
+			setRequestToDelete(null);
 		} catch (error) {
-		console.error("Error deleting document: ", error);
+			console.error("Error deleting document: ", error);
+		}
+	};
+
+	const handleArchiveRequest = async (request) => {
+		try {
+			const requestRef = doc(db, "requests", request.id);
+			await updateDoc(requestRef, { archived: true });
+		
+			getRequests();
+		} catch (error) {
+			console.error("Error deleting document: ", error);
 		}
 	};
 
@@ -64,12 +77,28 @@ const Dashboard = () => {
 	}
 
 	const handleArchiveAllRequests = async () => {
-		// const requestsRef = collection(db, "requests");
-		// const querySnapshot = await getDocs(requestsRef);
-	
-		// querySnapshot.forEach(async (doc) => {
-		// 	await updateDoc(doc.ref, { archived: true });
-		// });
+		try{
+			const currentRequestIds = requests.map(request => request.id);
+
+			const requestsRef = collection(db, "requests");
+			const q = query(requestsRef, where('__name__', 'in', currentRequestIds));
+			const querySnapshot = await getDocs(q);
+
+			const batch = writeBatch(db);
+
+			querySnapshot.forEach((doc) => {
+			batch.update(doc.ref, { archived: true });
+			});
+
+			await batch.commit();
+
+			// Update the state to reflect the changes
+			setRequests(prevRequests =>
+				prevRequests.map(req => ({ ...req, archived: true }))
+			);
+	  } catch (error) {
+		console.error("Error archiving requests: ", error);
+	  }
 	}
 
 	useEffect(() => {
@@ -84,7 +113,7 @@ const Dashboard = () => {
 		<div className="mx-auto bg-white pt-3 md:pt-8 md:p-8 md:shadow-lg md:rounded-lg min-h-screen">
 			{/* Header */}
 			<div className="flex md:flex-row items-center justify-between bg-gray-100 p-3 shadow-md rounded-lg mb-3">
-				<button className="flex items-center p-2 text-sm font-medium text-gray-600 w-auto transition-colors duration-200 sm:text-base hover:bg-gray bg-white  justify-center border rounded" onClick={handleArchiveAllRequests()}>
+				<button className="flex items-center p-2 text-sm font-medium text-gray-600 w-auto transition-colors duration-200 sm:text-base hover:bg-gray bg-white  justify-center border rounded" onClick={()=>handleArchiveAllRequests()}>
 					Archive All Requests
 				</button>
 				<div className="flex items-center space-x-4">
@@ -141,7 +170,8 @@ const Dashboard = () => {
 									<button className="flex items-center px-2 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6   gap-x-3 hover:bg-gray-100 w-full justify-center" onClick={() => handleCompleteRequest(request, true)}><FaCheck />  Mark Complete</button>}
 								</div>
 								<div className="flex justify-center w-full">
-									<button className="flex items-center px-2 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6   gap-x-3 hover:bg-gray-100 w-full justify-center" onClick={() => { setShowDeleteModal(true); setRequestToDelete(request); }}><IoCloseCircleOutline />  Delete</button>
+									<button className="flex items-center px-2 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6   gap-x-3 hover:bg-gray-100 w-full justify-center" onClick={()=>handleArchiveRequest(request)}><FaArchive />
+									Archive</button>
 								</div>	
 							</div>
 						</div>
