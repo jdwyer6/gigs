@@ -35,6 +35,7 @@ const Request = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+	requestData.time = new Date().toLocaleString();
   
     try {
 		// First, send the request data to the Firestore database

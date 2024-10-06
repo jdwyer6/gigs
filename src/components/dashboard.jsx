@@ -101,6 +101,52 @@ const Dashboard = () => {
 	  }
 	}
 
+	const timeAgo = (requestTime) => {
+		const now = new Date();
+		const requestDate = new Date(requestTime);
+
+		if (!requestTime || isNaN(new Date(requestTime).getTime())) {
+			return "";
+		}
+	  
+		const timeDiff = Math.abs(now - requestDate);
+		const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+	  
+		if (minutesDiff < 1) {
+		  return "Just now";
+		} else if (minutesDiff < 60) {
+		  	return `${minutesDiff} min${minutesDiff > 1 ? "s" : ""} ago`;
+		} else if (minutesDiff < 1440) {
+		  	const hours = Math.floor(minutesDiff / 60);
+		  	return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+		} else {
+		  	const days = Math.floor(minutesDiff / 1440);
+		  	return `${days} day${days > 1 ? "s" : ""} ago`;
+		}
+	}
+
+	const getTimeColor = (requestTime) => {
+		const now = new Date();
+		const requestDate = new Date(requestTime);
+
+		if (!requestTime || isNaN(new Date(requestTime).getTime())) {
+			return "";
+		}
+	  
+		const timeDiff = Math.abs(now - requestDate);
+		const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+
+		if (minutesDiff < 15) {
+			return "text-green-600";
+		} else if (minutesDiff < 30) {
+			return "text-yellow-600";
+		} else if (minutesDiff < 45) {
+			return "text-red-600";
+		} else {
+			return "text-gray-800";
+		}
+	}
+
 	useEffect(() => {
 		getRequests().then(() => setRequestsLoaded(true));
 	}, []);
@@ -139,7 +185,10 @@ const Dashboard = () => {
 				.map((request, index) => (
 					<div key={index} className="w-full p-3 bg-white rounded-md shadow-md flex flex-col justify-between">
 						<div className="flex items-start justify-between">
-							<span className="text-sm font-light text-gray-800">{request.band}</span>
+							<div className="flex flex-col justify-start">
+								<span className="text-sm font-light text-gray-800 text-start">{request.band}</span>
+								<span className={`text-sm font-light ${getTimeColor(request.time)} text-start`}>{timeAgo(request.time)}</span>	
+							</div>
 							<div className={`flex items-center justify-center px-3 py-1 text-xs text-blue-800 uppercase ${request.tip ? "bg-green-200" : "bg-red-200"} rounded-full`}>
 								{request.tip ? <><FaDollarSign/> {request.tipAmount} </>: 'No tip'}
 							</div>
@@ -161,8 +210,6 @@ const Dashboard = () => {
 								<span>or</span>
 								<a className="mx-2 text-blue-600 cursor-pointer hover:underline" role="link" onClick={()=>getMusicSearchQuery(request.title, request.band)}>Sheet Music</a>
 							</div>
-
-
 
 							<div className="flex overflow-hidden bg-white border divide-x rounded-lg rtl:flex-row-reverse mt-2 justify-center">
 								<div className="w-full">{request.complete ? (

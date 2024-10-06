@@ -28,8 +28,8 @@ const Success = () => {
                 <p className="mt-2 text-gray-600">Got a band? Use MelodyCue at your next gig. It's free!</p>
             
                 <div className="mt-8 space-y-3 md:flex md:space-y-0 md:space-x-4">
-                    <Link href="#" className="block w-full bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-brandPrimary-dark">Sign Up</Link>
-                    <Link to="/" className="flex items-center justify-center w-full bg-gray-200 text-gray-700 px-6 py-3 rounded-md font-semibold hover:bg-gray-300"><FaHome className="mr-2" />Home</Link>
+                    <Link to="/" className="flex items-center justify-center w-full bg-brandPrimary text-white px-6 py-3 rounded-md font-semibold hover:bg-brandPrimary-dark"><FaHome className="mr-2" />Home</Link>
+                    <Link href="#" className="flex items-center justify-center w-full bg-gray-200 text-gray-700 px-6 py-3 rounded-md font-semibold hover:bg-gray-300">Sign Up</Link>
                 </div>
             </div>
         </div>
